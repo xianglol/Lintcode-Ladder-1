@@ -1,0 +1,46 @@
+"""
+Definition of ListNode
+
+class ListNode(object):
+
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+
+
+***Failed attempt:***
+
+    def reverse(self, head):
+        # write your code here
+        prev = None
+        current = head
+        next = current.next
+        while(current is not None):
+            current.next = prev
+            prev = current
+            current = next
+            next = next.next       <<---You are trying to access next.next, 
+                                        but next may be None (you checked if current is None, 
+                                        but you didn't check if next is None. next will indeed be None in the last iteration of the loop). 
+                                        Thus, you need to move next=current.next inside the loop, and remove the last row in the loop
+        head = prev
+        return prev
+
+
+"""
+class Solution:
+    """
+    @param head: The first node of the linked list.
+    @return: You should return the head of the reversed linked list. 
+                  Reverse it in-place.
+    """
+    def reverse(self, head):
+        # write your code here
+        prev = None
+        current = head
+        while(current is not None):
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        return prev
